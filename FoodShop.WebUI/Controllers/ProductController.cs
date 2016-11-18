@@ -10,16 +10,24 @@ namespace FoodShop.WebUI.Controllers
 {
     public class ProductController : Controller
     {
+        #region
         private IProductRepository repository;
 
         public ProductController(IProductRepository productRepository)
         {
             repository = productRepository;
         }
+        #endregion
 
-        public ActionResult Index()
+        public int PageSize = 3;
+        public ViewResult Index(int page = 1)
         {
-            return View(repository.Products);
+            var data = repository.Products
+                .OrderBy(p => p.ProductID)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize);
+
+            return View(data);
         }
     }
 }

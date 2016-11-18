@@ -1,5 +1,6 @@
 ﻿using FoodShop.Domain.Abstract;
 using FoodShop.Domain.Entities;
+using FoodShop.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,22 @@ namespace FoodShop.WebUI.Controllers
         public int PageSize = 3;
         public ViewResult Index(int page = 1)
         {
-            var data = repository.Products
+            ProductsListViewModel model = new ProductsListViewModel
+            {
+                Products = repository.Products
                 .OrderBy(p => p.ProductID)
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize);
+                .Take(PageSize),
 
-            return View(data);
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = repository.Products.Count()
+                }
+            };
+
+            return View(model);
         }
     }
 }

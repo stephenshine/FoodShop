@@ -7,6 +7,7 @@ using Ninject;
 using Moq;
 using FoodShop.Domain.Abstract;
 using FoodShop.Domain.Entities;
+using FoodShop.Domain.Concrete;
 
 namespace FoodShop.WebUI.Infrastructure
 {
@@ -34,7 +35,7 @@ namespace FoodShop.WebUI.Infrastructure
                 );
 
             // every instance of IProductRepository will be replaced by the mock data above
-            kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+            kernel.Bind<IProductRepository>().To<EFProductRepository>();
         }
 
         public object GetService(Type serviceType)

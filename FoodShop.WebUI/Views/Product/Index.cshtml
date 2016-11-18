@@ -9,17 +9,17 @@
 
 @foreach (var p in Model.Products)
 {
-    <div class="row">
-        <div class="col-md-12">
-            <h3>@p.Name</h3>
-            <p>@p.Description</p>
-            <h4>@p.Price.ToString("c")</h4>
-        </div>
+    <div class="well">
+        <h3>
+            <strong>@p.Name</strong>
+            <span class="pull-right label label-primary">@p.Price.ToString("c")</span>
+        </h3>
+        <h3>
+            <span class="lead">@p.Description</span>
+        </h3>
     </div>
 }
 
-<div class="row">
-    <div class="col-md-12">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
-    </div>
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
 </div>

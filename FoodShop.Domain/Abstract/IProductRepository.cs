@@ -7,7 +7,7 @@ using FoodShop.Domain.Entities;
 
 namespace FoodShop.Domain.Abstract
 {
-    class IProductRepository
+    public interface IProductRepository
     {
         IEnumerable<Product> Products { get; }
     }

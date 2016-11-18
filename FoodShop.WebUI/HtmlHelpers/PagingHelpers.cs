@@ -7,13 +7,7 @@ namespace FoodShop.WebUI.HtmlHelpers
 {
     public static class PagingHelpers
     {
-        /// <summary>
-        /// HTML Helper to create paging info
-        /// </summary>
-        /// <param name="html"></param>
-        /// <param name="pagingInfo"></param>
-        /// <param name="pageUrl"></param>
-        /// <returns></returns>
+
         public static MvcHtmlString PageLinks(this HtmlHelper html, PagingInfo pagingInfo, Func<int, string> pageUrl)
         {
             StringBuilder result = new StringBuilder();
